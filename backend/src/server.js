@@ -1,6 +1,7 @@
 import express from 'express'
 import { ENV } from './lib/env.js'
 import path from 'path'
+import {dbConnect} from './lib/dbInstance.js'
 const app=express()
 const __dirname=path.resolve()
 
@@ -17,7 +18,15 @@ if(ENV.NODE_ENV==="production"){
         res.sendFile(path.join(__dirname,"../frontend","dist","index.html"))
     })
 }
-app.listen(ENV.PORT,()=>{
+const startServer=async()=>{
+try {
+    await dbConnect()
+     app.listen(ENV.PORT,()=>{
     console.log("Server listening on port 3000");
-    
-})
+       
+})       
+    } catch (error) {
+        
+    }
+}
+startServer()
