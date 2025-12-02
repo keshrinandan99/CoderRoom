@@ -1,11 +1,19 @@
 import express from 'express'
 import { ENV } from './lib/env.js'
 import path from 'path'
+import cors from 'cors'
 import {dbConnect} from './lib/dbInstance.js'
+import {serve} from 'inngest/express'
+import { functions, inngest } from './lib/inngest.js'
 const app=express()
 const __dirname=path.resolve()
 
-
+app.use(express.json())
+app.use(cors({
+    origin:ENV.CLIENT_URL,
+    credentials:true
+}))
+app.use("api/inngest",serve({client:inngest,functions}))
 
 app.get('/book',(req,res)=>{
     return res.status(201).json({message:"Server is running.... "})
