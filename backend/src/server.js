@@ -14,7 +14,10 @@ app.use(cors({
     origin:ENV.CLIENT_URL,
     credentials:true
 }))
-app.use("api/inngest",serve({client:inngest,functions:[syncUser,deleteUser]}))
+app.use("api/inngest", serve({
+      client: inngest,
+      functions,
+    }))
 
 app.get('/book',(req,res)=>{
     return res.status(201).json({message:"Server is running.... "})
