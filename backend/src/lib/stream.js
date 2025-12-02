@@ -1,5 +1,5 @@
 import { StreamChat } from "stream-chat";
-import { StreamClient } from "@stream-io/node-sdk";
+//import { StreamClient } from "@stream-io/node-sdk";
 import { ENV } from './env.js'
 
 const api_key=ENV.STREAM_API_KEY
@@ -9,6 +9,7 @@ if(!api_key || !api_secret){
 
 }
 export const chatClient=StreamChat.getInstance(api_key,api_secret)
+
 
 export const upsertStream=async(userdata)=>{
     try {
