@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/keshrinandan99/talentIQ.git"
   },
+  "engines": {
+  "node": ">=18"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
