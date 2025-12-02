@@ -5,6 +5,7 @@ import cors from 'cors'
 import {dbConnect} from './lib/dbInstance.js'
 import {serve} from 'inngest/express'
 import { functions, inngest } from './lib/inngest.js'
+import {syncUser,deleteUser} from './lib/inngest.js'
 const app=express()
 const __dirname=path.resolve()
 
@@ -13,7 +14,7 @@ app.use(cors({
     origin:ENV.CLIENT_URL,
     credentials:true
 }))
-app.use("api/inngest",serve({client:inngest,functions}))
+app.use("api/inngest",serve({client:inngest,functions:[syncUser,deleteUser]}))
 
 app.get('/book',(req,res)=>{
     return res.status(201).json({message:"Server is running.... "})
