@@ -13,6 +13,7 @@
   "type": "module",
   "dependencies": {
     "@clerk/express": "^1.7.53",
+    "@stream-io/video-react-sdk": "^1.27.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
