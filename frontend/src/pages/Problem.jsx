@@ -33,10 +33,6 @@ function Problem() {
 
     }
     const handleProblemChange=(id)=>{
-      // update state and navigate to reflect the selected problem
-      setCurrProblemId(id);
-      setCode(PROBLEMS[id].starterCode[selectedLanguage]);
-      setOutput(null);
       navigate(`/problem/${id}`);
     }
     const triggerConfetti=()=>{}
