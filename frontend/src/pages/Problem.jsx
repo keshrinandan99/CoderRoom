@@ -57,7 +57,15 @@ function Problem() {
     <Panel defaultSize={60} minSize={30}>
     <PanelGroup direction='vertical'>
     <Panel defaultSize={70} minSize={30}>
-        <CodeEditorPanel/>
+        <CodeEditorPanel
+          selectedLanguage={selectedLanguage}
+          code={code}
+          isRunning={isRunning}
+          onLanguageChange={handleLanguageChange}
+          onCodeChange={setCode}
+          onCodeRun={handleCodeRun}
+
+        />
     </Panel>
     <PanelResizeHandle className='h-2 bg-base-200 hover:bg-primary transition-colors cursor-row-resize'/>
     <Panel defaultSize={30} minSize={30}>
