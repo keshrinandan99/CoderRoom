@@ -105,7 +105,7 @@ export async function joinSession(){
       return res.status(201).json({session})
    } catch (error) {
         console.error(error.message)
-        return res.status(401).json({"Internal server error"})
+        return res.status(401).json("Internal server error")
    }
 
 }

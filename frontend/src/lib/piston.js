@@ -17,42 +17,47 @@ export async function executeCode(language,code){
                 error:`Unsupported language type : ${language} `
             }
         }
-       const response= await fetch(`${PISTON_API}/execute`,{
-            method:"POST",
-            headers:{
-                "ContentType":"application/json"
+       const response = await fetch(`${PISTON_API}/execute`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
             },
-            body:JSON.stringify({
-                language:languageConfig.language,
-                version:languageConfig.version,
-                files:[
+            body: JSON.stringify({
+                language: languageConfig.language,
+                version: languageConfig.version,
+                files: [
                     {
-                        name:`main.${getExtension(language)}`,
-                        content:'code'
+                        name: `main.${getExtension(language)}`,
+                        content: `${code}`
                     }
                 ]
-            })    
-        })
-        if(!response.ok){
+            })
+        });
+
+        if (!response.ok) {
+            const text = await response.text();
             return {
-                success:false,
-                error:response.error
-            }
+                success: false,
+                error: text || `Request failed with status ${response.status}`
+            };
         }
-        const data=response.JSON()
-        const output=data.run.output || ""
-        const stderr=data.run.stderr || ""
-        if(stderr){
+
+        const data = await response.json();
+        const output = data?.run?.output ?? "";
+        const stderr = data?.run?.stderr ?? "";
+
+        if (stderr) {
             return {
-                success:false,
-                output:output,
-                error:stderr
-            }
+                success: false,
+                output,
+                error: stderr
+            };
         }
+
         return {
-            success:true,
-            output:output || "No output"
-        }
+            success: true,
+            output: output || "No output"
+        };
     } catch (error) {
         return {
             success:false,

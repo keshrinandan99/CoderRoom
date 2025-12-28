@@ -6,6 +6,7 @@ import ProblemsPage from './pages/ProblemsPage'
 import { useUser } from '@clerk/clerk-react'
 import Dashboard from './pages/Dashboard'
 import Problem from './pages/Problem'
+import { Toaster } from 'react-hot-toast'
 function App() {
   const { isSignedIn,isLoaded } = useUser()
   if(!isLoaded)return null
@@ -19,7 +20,7 @@ function App() {
 
       
     </Routes>
-      
+<Toaster direction="center"/>      
     </>
   )
 }
