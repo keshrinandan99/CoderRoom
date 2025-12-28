@@ -20,7 +20,7 @@ function App() {
 
       
     </Routes>
-<Toaster direction="center"/>      
+<Toaster position="top-center"/>      
     </>
   )
 }
