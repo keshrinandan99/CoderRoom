@@ -4,13 +4,16 @@ import { getDifficultyBadgeClass } from '../lib/utils'
 import { useLocation } from 'react-router'
 import { PROBLEMS } from '../../data/problems'
 import { Link } from 'react-router'
+import { useActiveSession } from '../hooks/useSessions'
 import { ChevronLeftIcon, ChevronRightIcon, CodeIcon } from 'lucide-react'
 function ProblemsPage() {
    const problem=Object.values(PROBLEMS)
    const easyProblemCount=problem.filter((p)=>p.difficulty=='Easy').length
    const mediumProblemCount=problem.filter((p)=>p.difficulty=='Medium').length
    const hardProblemCount=problem.filter((p)=>p.difficulty=='Hard').length
-
+  const { data: activeSessions = [], error, isLoading } = useActiveSession();
+console.log('activeSessions', activeSessions); // safe even before fetch finishes
+  
   return (
     <>
     <div className='min-h-screen bg-base-200'>

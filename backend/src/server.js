@@ -24,12 +24,12 @@ app.use('/api/inngest', serve({
 
   app.use(clerkMiddleware());
 
-app.get('/book',protectRoute,(req,res)=>{
-    return res.status(201).json({message:"Server is running.... "})
+// app.get('/book',protectRoute,(req,res)=>{
+//     return res.status(201).json({message:"Server is running.... "})
     
-})
-app.use('api/chat',chatRoute)
-app.use('api/session', sessionRoute);
+// })
+app.use('/api/chat', chatRoute)
+app.use('/api/session', sessionRoute);
 
 
 
