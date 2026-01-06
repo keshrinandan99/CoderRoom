@@ -42,7 +42,10 @@ export async function createSession(req,res){
 } 
 export async function getActiveSession(req,res){
     try {
-        const session=await Session.find({status:"active"}).populate("host","name profileImage, email , clerkId").sort({createdAt:-1}).limit(20)
+        const sessions=await Session.find({status:"active"})
+        .populate("host","name profileImage, email , clerkId")
+        .populate("participant" ,"name profileImage,email,clerkId")
+        .sort({createdAt:-1}).limit(20)
 
         return res.status(200).json({session})
     } catch (error) {
@@ -61,8 +64,8 @@ export async function getSessionById(req,res){
          return res.status(401).json({message:"User id is required"})
      }
      const session=await Session.findById(id)
-     .populate("host","name email clerkId, profileImage")
-     .populate("participant", "name,email,clerkId, profileImage")
+     .populate("host","name email clerkId profileImage")
+     .populate("participant", "name email clerkId profileImage")
 
      if(!session){
         return res.status(401).json({message:`No session found with this id: ${id}`})
