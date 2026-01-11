@@ -23,6 +23,8 @@
     "react-hot-toast": "^2.6.0",
     "react-resizable-panels": "^3.0.6",
     "react-router": "^7.10.1",
+    "stream-chat": "^9.28.0",
+    "stream-chat-react": "^13.13.1",
     "tailwindcss": "^4.1.17",
     "vite": "^7.2.4"
   },
