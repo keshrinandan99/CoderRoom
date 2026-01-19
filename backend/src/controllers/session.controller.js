@@ -41,9 +41,7 @@ export async function createSession(req,res){
     }
 } 
 export async function getActiveSession(_, res) {
-  // #region agent log
-  fetch('http://127.0.0.1:7242/ingest/1effe9a3-fb30-41d9-9505-662d83af0e60',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'session.controller.js:43',message:'Controller reached',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'D'})}).catch(()=>{});
-  // #endregion
+  
   try {
     const sessions = await Session.find({ status: "active" })
       .populate("host", "name profileImage email clerkId")

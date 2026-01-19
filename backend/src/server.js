@@ -24,18 +24,7 @@ app.use('/api/inngest', serve({
 
   app.use(clerkMiddleware());
 
-// app.get('/book',protectRoute,(req,res)=>{
-//     return res.status(201).json({message:"Server is running.... "})
-    
-// })
-// #region agent log
-app.use((req, res, next) => {
-  if (req.path.startsWith('/api/session')) {
-    fetch('http://127.0.0.1:7242/ingest/1effe9a3-fb30-41d9-9505-662d83af0e60',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'server.js:32',message:'Request received at server',data:{method:req.method,path:req.path,url:req.url,originalUrl:req.originalUrl},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C,D'})}).catch(()=>{});
-  }
-  next();
-});
-// #endregion
+
 app.use('/api/chat', chatRoute)
 app.use('/api/session', sessionRoute);
 
