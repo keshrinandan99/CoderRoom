@@ -4,7 +4,6 @@ import { createSession,getActiveSession,getMyRecentSession,getSessionById,joinSe
 const router=express.Router();
 
 router.post('/', protectRoute, createSession);
-router.get('/active', protectRoute,getActiveSession);
 router.get('/my-recent', protectRoute, getMyRecentSession);
 router.get('/:id', protectRoute,getSessionById);
 router.post('/:id/join', protectRoute,joinSession)

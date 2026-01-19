@@ -7,7 +7,7 @@ export const useCreateSession=()=>{
         mutationKey:["createSession"],
         mutationFn:sessionApi.createSession,
         onSuccess:()=>toast.success('Room created Successfully!'),
-        onError:(error)=>toast.error(error.response.data.message)
+        onError:(error)=>toast.error(error?.response?.data?.message || 'Failed to create session')
     })
     return result;
 }
@@ -31,7 +31,7 @@ export const useSessionById=(id)=>{
     const result=useQuery({
         queryKey:["getSessionById",id],
         queryFn:()=>sessionApi.getSessionById(id),
-        enabled:!!id, //for boolean values !! is used remember it
+        enabled:!!id, //for boolean values !! is used, remember it
         refetchInterval:5000,
 
     })
@@ -42,7 +42,7 @@ export const useJoinSession=()=>{
         mutationKey:["joinSession"],
         mutationFn:()=>sessionApi.joinSession,
         onSuccess:()=>toast.success("User joined Successfully"),
-        onError:(error)=>toast.error("Failed to join session",error.response.data.message)
+        onError:(error)=>toast.error(error?.response?.data?.message || 'Failed to join session')
     })
     return result;
 }

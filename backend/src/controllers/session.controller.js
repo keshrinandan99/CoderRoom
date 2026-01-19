@@ -40,22 +40,21 @@ export async function createSession(req,res){
         
     }
 } 
-export async function getActiveSession(req,res){
-    try {
-        const sessions=await Session.find({status:"active"})
-        .populate("host","name profileImage, email , clerkId")
-        .populate("participant" ,"name profileImage,email,clerkId")
-        .sort({createdAt:-1}).limit(20)
+export async function getActiveSession(_, res) {
+  
+  try {
+    const sessions = await Session.find({ status: "active" })
+      .populate("host", "name profileImage email clerkId")
+      .populate("participant", "name profileImage email clerkId")
+      .sort({ createdAt: -1 })
+      .limit(20);
 
-        return res.status(200).json({session})
-    } catch (error) {
-        console.error("Error fetching active sessions", error.message)
-        return res.status(500).json({
-            message:"Internal server error"
-        })
-    }
-
-} 
+    res.status(200).json({ sessions });
+  } catch (error) {
+    console.log("Error in getActiveSessions controller:", error.message);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
 
 export async function getSessionById(req,res){
    try {
